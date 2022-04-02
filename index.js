@@ -22,7 +22,7 @@ app.post("/paynow", [parseUrl, parseJson], (req, res) => {
     customerId: req.body.name,
     customerEmail: req.body.email,
     customerPhone: req.body.phone,
-    customerRest: req.body.rest_name
+    customerRest: req.body.restaurant_name
 }
 if(!paymentDetails.amount || !paymentDetails.customerId || !paymentDetails.customerEmail || !paymentDetails.customerPhone || !paymentDetails.customerRest) {
     res.status(400).send('Payment failed')
@@ -127,3 +127,5 @@ app.post("/callback", (req, res) => {
 app.listen(PORT, () => {
   console.log(`App is listening on Port ${PORT}`);
 });
+
+

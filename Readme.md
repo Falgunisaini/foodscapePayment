@@ -1,6 +1,5 @@
-# Aakash Developer 
-# Paytm Payment Gateway
-# generate key from https://dashboard.paytm.com/
+<!-- Paytm Payment Gateway -->
+<!-- Generate key from https://dashboard.paytm.com/ -->
 
 
 >> Accept request at 
