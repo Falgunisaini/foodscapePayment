@@ -12,6 +12,12 @@ const parseUrl = express.urlencoded({ extended: false });
 const parseJson = express.json({ extended: false });
 
 const PORT = process.env.PORT || 4100;
+app.set('views','./views')
+app.set('view engine','ejs')
+
+app.get('/',(req,res) => {
+  res.render('index')
+})
 
 app.post("/paynow", [parseUrl, parseJson], (req, res) => {
   // Route for making payment
@@ -43,7 +49,6 @@ if(!paymentDetails.amount || !paymentDetails.customerId || !paymentDetails.custo
 
     checksum_lib.genchecksum(params, config.PaytmConfig.key, function (err, checksum) {
         var txn_url = "https://securegw-stage.paytm.in/theia/processTransaction"; // for staging
-        // var txn_url = "https://securegw.paytm.in/theia/processTransaction"; // for production
 
         var form_fields = "";
         for (var x in params) {
