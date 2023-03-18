@@ -22,13 +22,22 @@ app.get('/',(req,res) => {
 app.post("/paynow", [parseUrl, parseJson], (req, res) => {
   // Route for making payment
   console.log(">>>>",req.body)
+  console.log("Req.body data",req.body.id)
+  console.log("Req.body data",req.body.name)
+  console.log("Req.body data",req.body.cost)
+  console.log("Req.body data",req.body.email)
+  console.log("Req.body data",req.body.phone)
+  console.log("Req.body data",req.body.Rest_name)
+
   var paymentDetails = {
+  
     orderID: req.body.id,
     amount: req.body.cost,
     customerId: req.body.name,
     customerEmail: req.body.email,
     customerPhone: req.body.phone,
-    customerRest: req.body.Rest_name
+    customerRest: req.body.Rest_name,
+  
 }
 if(!paymentDetails.amount || !paymentDetails.customerId || !paymentDetails.customerEmail || !paymentDetails.customerPhone || !paymentDetails.customerRest) {
     res.status(400).send('Payment failed')
