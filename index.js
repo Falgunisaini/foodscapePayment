@@ -12,8 +12,6 @@ const parseUrl = express.urlencoded({ extended: false });
 const parseJson = express.json({ extended: false });
 
 const PORT = process.env.PORT || 4100;
-app.set('views', './views')
-app.set('view engine', 'ejs')
 
 app.get('/', (req, res) => {
   res.render('index')
@@ -39,12 +37,6 @@ app.post("/paynow", [parseUrl, parseJson], (req, res) => {
     customerRest: req.body.Rest_name,
 
   }
-
-  console.log(">>>>", paymentDetails.amount)
-  console.log(">>>>", paymentDetails.customerId)
-  console.log(">>>>", paymentDetails.customerEmail)
-  console.log(">>>>", paymentDetails.customerPhone)
-  console.log(">>>>", paymentDetails.customerRest)
 
   if (!paymentDetails.amount || !paymentDetails.customerId || !paymentDetails.customerEmail || !paymentDetails.customerPhone || !paymentDetails.customerRest) {
     res.status(400).send('Payment failed')
@@ -135,7 +127,7 @@ app.post("/callback", (req, res) => {
           var _results = JSON.parse(response);
           /* where it will come back after payment*/
           let STATUS = "TXN_SUCCESS";
-          let ORDERID = Math.floor(Math.random() * 100000);
+          // let ORDERID = Math.floor(Math.random() * 100000);
           const date = new Date();
           let day = date.getDate();
           let month = date.getMonth() + 1;
@@ -143,7 +135,7 @@ app.post("/callback", (req, res) => {
           let currentDate = `${day}-${month}-${year}`;
           let TXNDATE = currentDate;
 
-          res.redirect(`https://foodscapee.netlify.app/viewOrder?status=${STATUS}&ORDERID=${ORDERID}&date=${TXNDATE}`)
+          res.redirect(`https://foodscapee.netlify.app/viewOrder?status=${STATUS}&date=${TXNDATE}`)
         });
       });
 
